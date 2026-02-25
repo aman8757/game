@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Registrations</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="admin-style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@400;600&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="admin-body">
+    <div class="background-animation"></div>
+    <div class="admin-container">
+        <header class="admin-header">
+            <div>
+                <h1>ADMIN DASHBOARD</h1>
+                <p>Registration Management</p>
+            </div>
+            <div class="nav-links" style="display: flex; gap: 15px;">
+                <button id="logoutBtn" class="cyber-button secondary"
+                    style="padding: 10px 20px; font-size: 1rem; display: none;">Disconnect Link</button>
+            </div>
+        </header>
+
+        <main class="glass-panel admin-panel" id="loginSection"
+            style="max-width: 450px; margin: 40px auto; position: relative;">
+            <div style="text-align: center;">
+                <h2 style="border-bottom: none; margin-bottom: 0.5rem; color: var(--text);">SECURE ACCESS</h2>
+                <p style="color: var(--text-muted); margin-bottom: 2.5rem;">Authenticate to access terminal</p>
+            </div>
+
+            <div class="input-group">
+                <input type="text" id="adminUser" required placeholder=" ">
+                <label for="adminUser">Admin ID</label>
+            </div>
+            <div class="input-group">
+                <input type="password" id="adminPass" required placeholder=" ">
+                <label for="adminPass">Master Password</label>
+            </div>
+
+            <p id="loginError"
+                style="color: var(--secondary); display: none; margin-bottom: 15px; text-align: center; font-size: 0.95rem; text-shadow: 0 0 10px var(--secondary); letter-spacing: 1px;">
+                ACCESS DENIED</p>
+
+            <button type="button" id="loginBtn" class="cyber-button">Initiate Link</button>
+
+            <div
+                style="margin-top: 25px; text-align: center; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.05);">
+                <span style="font-size: 0.8rem; color: var(--text-muted);">Demo Credentials: <span
+                        style="color: var(--primary);">admin</span> / <span
+                        style="color: var(--primary);">admin123</span></span>
+            </div>
+        </main>
+
+        <main class="glass-panel admin-panel" id="dashboardSection" style="display: none;">
+            <div class="stats-container">
+                <div class="stat-card">
+                    <h3>Total Registrations</h3>
+                    <p id="totalCount">0</p>
+                </div>
+                <div class="stat-actions">
+                    <button id="clearDataBtn" class="cyber-button secondary btn-auto">Clear All Data</button>
+                    <button id="exportBtn" class="cyber-button btn-auto">Export to CSV</button>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="cyber-table">
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Captain Name</th>
+                            <th>Squad Name</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                            <th>Transaction ID</th>
+                            <th>Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="registrationTableBody">
+                        <!-- Data will be populated here by JS -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Community Queries Section -->
+            <div style="margin-top: 40px; border-top: 2px solid var(--accent); padding-top: 20px;">
+                <h3 style="color: var(--primary); margin-bottom: 20px; font-family: 'Orbitron', sans-serif;">COMMUNITY
+                    QUERIES</h3>
+                <div class="stats-container">
+                    <div class="stat-card">
+                        <h3>Total Queries</h3>
+                        <p id="totalQueriesCount">0</p>
+                    </div>
+                    <div class="stat-actions">
+                        <button id="clearQueriesBtn" class="cyber-button secondary btn-auto">Clear Queries</button>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="cyber-table">
+                        <thead>
+                            <tr>
+                                <th>No.</th>
+                                <th>Name</th>
+                                <th>Phone Number</th>
+                                <th>Query</th>
+                                <th>Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="queriesTableBody">
+                            <!-- Queries will be populated here by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+
+</html>
