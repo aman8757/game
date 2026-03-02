@@ -80,18 +80,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 body: JSON.stringify(userData)
             });
 
-            const result = await response.json();
-
-            if (response.ok) {
-                // Show Success
-                step2.classList.remove('active');
-                successMessage.classList.add('active');
+            const contentType = response.headers.get("content-type");
+            if (contentType && contentType.indexOf("application/json") !== -1) {
+                const result = await response.json();
+                if (response.ok) {
+                    // Show Success
+                    step2.classList.remove('active');
+                    successMessage.classList.add('active');
+                } else {
+                    alert('Registration failed: ' + (result.error || 'Please try again.'));
+                }
             } else {
-                alert('Registration failed: ' + (result.error || 'Please try again.'));
+                const textResult = await response.text();
+                console.error("Non-JSON response:", textResult);
+                alert(`Server returned an error (${response.status}): ` + textResult.substring(0, 100));
             }
         } catch (error) {
             console.error('Error:', error);
-            alert('Server is down. Please try again later.');
+            alert('Could not connect to server. Please check your internet or try again later: ' + error.message);
         } finally {
             submitBtn.innerText = originalText;
             submitBtn.disabled = false;
